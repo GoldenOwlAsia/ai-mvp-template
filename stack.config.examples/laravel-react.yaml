@@ -1,0 +1,67 @@
+# Laravel + React/Vite
+project:
+  name: taskflow
+  slug: taskflow
+  locale: en
+  packageManager: pnpm
+  node: "20"
+  monorepo: true
+
+frontend:
+  appDir: apps/web
+  language: typescript
+  framework: react-vite
+  frameworkVersion: "18.3.1"
+  bundler: vite
+  bundlerVersion: "5.4.11"
+  packages:
+    react: "18.3.1"
+    react-dom: "18.3.1"
+    "@tanstack/react-query": "5.59.0"
+    zustand: "5.0.0"
+    axios: "1.7.7"
+    react-hook-form: "7.53.0"
+    zod: "3.23.8"
+    "@hookform/resolvers": "3.9.0"
+    "react-router-dom": "6.26.2"
+    clsx: "2.1.1"
+    "tailwind-merge": "2.5.2"
+
+backend:
+  appDir: apps/api
+  language: php
+  framework: laravel
+  frameworkVersion: "11.0.0"
+  orm: eloquent
+  packages:
+    "laravel/framework": "11.28.0"
+    "laravel/sanctum": "4.0.2"
+    "firebase/php-jwt": "6.10.1"
+
+database:
+  engine: postgresql
+  provider: local-docker
+  redis: false
+
+deploy:
+  web: vercel
+  api: railway
+  container: docker
+
+tooling:
+  prettier: "3.3.3"
+  test:
+    frontend: vitest
+    backend: phpunit
+
+features:
+  auth: true
+  softDelete: true
+  fileUpload: false
+  jobs: false
+  observability: false
+
+constraints:
+  allowNewDependencies: false
+  pinExactVersions: true
+  forbidAny: true

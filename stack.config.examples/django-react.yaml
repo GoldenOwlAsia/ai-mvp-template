@@ -1,0 +1,70 @@
+# Django + React/Vite
+project:
+  name: taskflow
+  slug: taskflow
+  locale: en
+  packageManager: pnpm
+  node: "20"
+  monorepo: true
+
+frontend:
+  appDir: apps/web
+  language: typescript
+  framework: react-vite
+  frameworkVersion: "18.3.1"
+  bundler: vite
+  bundlerVersion: "5.4.11"
+  packages:
+    react: "18.3.1"
+    react-dom: "18.3.1"
+    "@tanstack/react-query": "5.59.0"
+    zustand: "5.0.0"
+    axios: "1.7.7"
+    react-hook-form: "7.53.0"
+    zod: "3.23.8"
+    "@hookform/resolvers": "3.9.0"
+    "react-router-dom": "6.26.2"
+    clsx: "2.1.1"
+    "tailwind-merge": "2.5.2"
+
+backend:
+  appDir: apps/api
+  language: python
+  framework: django
+  frameworkVersion: "5.1.1"
+  orm: django-orm
+  packages:
+    Django: "5.1.1"
+    djangorestframework: "3.15.2"
+    djangorestframework-simplejwt: "5.3.1"
+    django-cors-headers: "4.4.0"
+    psycopg: "3.2.3"
+    gunicorn: "23.0.0"
+
+database:
+  engine: postgresql
+  provider: local-docker
+  redis: false
+
+deploy:
+  web: vercel
+  api: railway
+  container: docker
+
+tooling:
+  prettier: "3.3.3"
+  test:
+    frontend: vitest
+    backend: pytest
+
+features:
+  auth: true
+  softDelete: true
+  fileUpload: false
+  jobs: false
+  observability: false
+
+constraints:
+  allowNewDependencies: false
+  pinExactVersions: true
+  forbidAny: true

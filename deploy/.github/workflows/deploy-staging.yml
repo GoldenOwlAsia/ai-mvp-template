@@ -1,0 +1,22 @@
+# Skeleton — wire Railway/Vercel tokens as GitHub Actions secrets before enabling
+name: deploy-staging
+
+on:
+  push:
+    branches: [staging]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stub — configure deploy
+        run: |
+          echo "Wire Railway CLI / Vercel CLI here."
+          echo "Do not print secret values."
+          echo "Require human approval for production (separate workflow)."
+      # Example placeholders (do not enable until secrets exist):
+      # - run: railway up --service api
+      # - run: vercel deploy --prebuilt --token=$VERCEL_TOKEN

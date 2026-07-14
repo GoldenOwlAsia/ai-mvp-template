@@ -1,0 +1,8 @@
+language: php
+framework: laravel
+frameworkVersion: "11.0.0"
+orm: eloquent
+packages:
+  "laravel/framework": "11.28.0"
+  "laravel/sanctum": "4.0.2"
+  "firebase/php-jwt": "6.10.1"

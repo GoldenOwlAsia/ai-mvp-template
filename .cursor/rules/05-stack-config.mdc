@@ -1,0 +1,15 @@
+---
+description: Dependency and version source of truth
+alwaysApply: true
+---
+
+# stack.config.yaml
+
+- BEFORE installing or suggesting a new package: read `stack.config.yaml`.
+- Backend/frontend `framework` + `language` must match an entry in `stacks/catalog.json`.
+- Only packages listed under `frontend.packages` / `backend.packages` may be installed (use adapter `packages.example.yaml` as the pin source).
+- Versions must match exactly when `constraints.pinExactVersions: true` (no `^`, `~`, `latest`).
+- To add a library: edit `stack.config.yaml` → confirm with user → `node scripts/apply-stack-config.mjs` → install with the catalog package manager(s).
+- `features.fileUpload|jobs|observability: false` → do NOT add related SDKs or generate that code.
+- Run `node scripts/validate-stack-config.mjs` after editing config.
+- This base does **not** ship `apps/` source. Bootstrap creates `frontend.appDir` / `backend.appDir` from config + adapter BOOTSTRAP.md.

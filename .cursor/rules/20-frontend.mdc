@@ -1,0 +1,13 @@
+---
+description: Frontend follows active stack adapter
+globs: apps/web/**/*
+alwaysApply: false
+---
+
+# Frontend
+
+- Read `stack.config.yaml` → `frontend.framework`.
+- If `none`, do not create a separate SPA (API-only / server-rendered per backend adapter).
+- Otherwise follow `stacks/<frontend.framework>/CONVENTION.md` (default catalog: `react-vite`).
+- Always handle loading / empty / error states.
+- Access token in memory; refresh via httpOnly cookie when using the SPA auth pattern.

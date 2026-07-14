@@ -1,0 +1,24 @@
+# Skeleton — copy to repo-root .github/workflows/ when enabling CI
+name: pull-request
+
+on:
+  pull_request:
+    branches: [main, develop, staging]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm validate:stack
+      - run: pnpm --filter @app/api exec tsc -p tsconfig.json --noEmit
+      - run: pnpm --filter @app/web exec tsc -b --noEmit
+      # - run: pnpm -r test

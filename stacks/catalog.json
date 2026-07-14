@@ -1,0 +1,88 @@
+{
+  "backends": {
+    "nestjs": {
+      "language": "typescript",
+      "orm": "prisma",
+      "packageManagers": [
+        "pnpm"
+      ],
+      "runtime": "node",
+      "path": "stacks/nestjs",
+      "defaultAppDir": "apps/api"
+    },
+    "laravel": {
+      "language": "php",
+      "orm": "eloquent",
+      "packageManagers": [
+        "composer",
+        "pnpm"
+      ],
+      "runtime": "php-fpm",
+      "path": "stacks/laravel",
+      "defaultAppDir": "apps/api"
+    },
+    "django": {
+      "language": "python",
+      "orm": "django-orm",
+      "packageManagers": [
+        "poetry"
+      ],
+      "runtime": "gunicorn",
+      "path": "stacks/django",
+      "defaultAppDir": "apps/api"
+    }
+  },
+  "frontends": {
+    "react-vite": {
+      "language": "typescript",
+      "packageManagers": [
+        "pnpm"
+      ],
+      "path": "stacks/react-vite",
+      "defaultAppDir": "apps/web"
+    },
+    "none": {
+      "language": null,
+      "packageManagers": [],
+      "path": null,
+      "defaultAppDir": null
+    }
+  },
+  "featurePackageHints": {
+    "jobs": {
+      "nestjs": [
+        "bullmq"
+      ],
+      "laravel": [
+        "laravel/horizon"
+      ],
+      "django": [
+        "celery"
+      ]
+    },
+    "fileUpload": {
+      "nestjs": [
+        "@aws-sdk/client-s3",
+        "@aws-sdk/s3-request-presigner"
+      ],
+      "laravel": [
+        "league/flysystem-aws-s3-v3"
+      ],
+      "django": [
+        "boto3"
+      ]
+    },
+    "redis": {
+      "nestjs": [
+        "ioredis",
+        "redis"
+      ],
+      "laravel": [
+        "predis/predis"
+      ],
+      "django": [
+        "redis"
+      ]
+    }
+  }
+}

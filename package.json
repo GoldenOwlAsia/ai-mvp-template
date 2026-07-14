@@ -1,0 +1,18 @@
+{
+  "name": "taskflow",
+  "private": true,
+  "description": "Claude MVP base — docs + stack config. Apps generated via bootstrap + stack adapters.",
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "validate:stack": "node scripts/validate-stack-config.mjs",
+    "apply:stack": "node scripts/apply-stack-config.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "yaml": "2.5.1",
+    "prettier": "3.3.3",
+    "typescript": "5.6.2"
+  }
+}

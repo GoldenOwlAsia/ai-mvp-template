@@ -1,0 +1,246 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Claude MVP Stack Config",
+  "type": "object",
+  "required": [
+    "project",
+    "frontend",
+    "backend",
+    "database",
+    "deploy",
+    "tooling",
+    "features",
+    "constraints"
+  ],
+  "properties": {
+    "project": {
+      "type": "object",
+      "required": [
+        "name",
+        "slug",
+        "locale",
+        "packageManager",
+        "monorepo"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "locale": {
+          "type": "string",
+          "enum": [
+            "vi",
+            "en"
+          ]
+        },
+        "packageManager": {
+          "type": "string",
+          "description": "Primary JS tooling if needed; real managers come from catalog"
+        },
+        "node": {
+          "type": "string"
+        },
+        "monorepo": {
+          "type": "boolean"
+        }
+      }
+    },
+    "frontend": {
+      "type": "object",
+      "required": [
+        "framework",
+        "appDir"
+      ],
+      "properties": {
+        "appDir": {
+          "type": "string"
+        },
+        "language": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "framework": {
+          "type": "string",
+          "enum": [
+            "react-vite",
+            "none"
+          ]
+        },
+        "frameworkVersion": {
+          "type": "string"
+        },
+        "bundler": {
+          "type": "string"
+        },
+        "bundlerVersion": {
+          "type": "string"
+        },
+        "styling": {
+          "type": "string"
+        },
+        "ui": {
+          "type": "string"
+        },
+        "packages": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "backend": {
+      "type": "object",
+      "required": [
+        "appDir",
+        "language",
+        "framework",
+        "packages"
+      ],
+      "properties": {
+        "appDir": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string",
+          "enum": [
+            "typescript",
+            "php",
+            "python"
+          ]
+        },
+        "framework": {
+          "type": "string",
+          "enum": [
+            "nestjs",
+            "laravel",
+            "django"
+          ]
+        },
+        "frameworkVersion": {
+          "type": "string"
+        },
+        "orm": {
+          "type": "string"
+        },
+        "ormVersion": {
+          "type": "string"
+        },
+        "packages": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "database": {
+      "type": "object",
+      "required": [
+        "engine",
+        "provider",
+        "redis"
+      ],
+      "properties": {
+        "engine": {
+          "type": "string",
+          "enum": [
+            "postgresql"
+          ]
+        },
+        "provider": {
+          "type": "string",
+          "enum": [
+            "supabase",
+            "neon",
+            "local-docker"
+          ]
+        },
+        "redis": {
+          "type": "boolean"
+        }
+      }
+    },
+    "deploy": {
+      "type": "object",
+      "required": [
+        "web",
+        "api",
+        "container"
+      ],
+      "properties": {
+        "web": {
+          "type": "string"
+        },
+        "api": {
+          "type": "string"
+        },
+        "container": {
+          "type": "string"
+        }
+      }
+    },
+    "tooling": {
+      "type": "object",
+      "properties": {
+        "typescript": {
+          "type": "string"
+        },
+        "eslint": {
+          "type": "string"
+        },
+        "prettier": {
+          "type": "string"
+        },
+        "test": {
+          "type": "object"
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "required": [
+        "auth",
+        "softDelete"
+      ],
+      "properties": {
+        "auth": {
+          "type": "boolean"
+        },
+        "softDelete": {
+          "type": "boolean"
+        },
+        "fileUpload": {
+          "type": "boolean"
+        },
+        "jobs": {
+          "type": "boolean"
+        },
+        "observability": {
+          "type": "boolean"
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "allowNewDependencies": {
+          "type": "boolean"
+        },
+        "pinExactVersions": {
+          "type": "boolean"
+        },
+        "forbidAny": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

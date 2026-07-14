@@ -1,0 +1,19 @@
+---
+description: Product-level immutable contracts (stack-agnostic)
+alwaysApply: true
+---
+
+# Product contracts (FIXED)
+
+These apply whether the backend is NestJS, Laravel, Django, or another catalog adapter.
+
+- Primary keys: string IDs (`cuid()` / UUID) — never auto-increment integers for domain entities.
+- Soft delete: set `deletedAt` (or adapter equivalent timestamp) — never hard-delete domain rows.
+- Auth: short-lived access token in **memory**; refresh token in **httpOnly cookie** (DB-backed revoke when applicable).
+- Error response envelope: `{ statusCode, code, message, timestamp, path }`.
+- API verbs: no PUT; use PATCH for updates; DELETE = soft delete.
+- Never expose `password`, refresh tokens, or secrets in API responses.
+- Confirm feature requirements before coding. One prompt = one layer.
+- Typing: follow the active stack adapter — TypeScript: no `any`; PHP/Python: no untyped escape hatches that hide required fields.
+
+Stack-specific module layouts live in `stacks/<framework>/CONVENTION.md` — not here.

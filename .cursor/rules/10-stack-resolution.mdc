@@ -1,0 +1,13 @@
+---
+description: Resolve stack adapters from stack.config.yaml
+alwaysApply: true
+---
+
+# Stack resolution
+
+1. Read `stack.config.yaml` → `backend.framework` and `frontend.framework`.
+2. Load backend adapter: `stacks/<backend.framework>/CONVENTION.md` + `BOOTSTRAP.md`.
+3. If `frontend.framework` is not `none`, load `stacks/<frontend.framework>/CONVENTION.md` + `BOOTSTRAP.md`.
+4. Implement code **only** using those adapter conventions — do not default to NestJS or React if config says otherwise.
+5. Map product contracts (soft-delete, auth, error envelope) to the adapter's idioms.
+6. After `apply:stack`, prefer `stack.manifest.json` → `adapters` paths as the resolved locations.
