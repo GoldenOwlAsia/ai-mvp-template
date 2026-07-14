@@ -2,12 +2,18 @@
 
 ## Mobile
 
-Full Fastlane / Flutter store release lives mainly in the root `deployment/mobile/` repo.
+Full Flutter + Fastlane runbooks live in this template under [`deploy/kb/mobile/`](../deploy/kb/mobile/):
 
-In this template the entry points are:
+| Area | Path |
+|---|---|
+| Entry + Claude contract | [`../deploy/kb/mobile/README.md`](../deploy/kb/mobile/README.md) |
+| Strategy / env / versioning / release | `mobile-deployment-strategy.md`, `environments.md`, `versioning.md`, `release-flow.md` |
+| Signing | [`../deploy/kb/mobile/signing/`](../deploy/kb/mobile/signing/) |
+| Fastlane | [`../deploy/kb/mobile/fastlane/`](../deploy/kb/mobile/fastlane/) |
+| Flutter distribution | [`../deploy/kb/mobile/flutter/`](../deploy/kb/mobile/flutter/) |
+| Checklists | [`../deploy/kb/mobile/checklists/`](../deploy/kb/mobile/checklists/) |
 
-- [`../deploy/kb/mobile/README.md`](../deploy/kb/mobile/README.md)
-- Multi-platform Claude guide: [`../deploy/PLATFORM-GUIDE.md`](../deploy/PLATFORM-GUIDE.md)
+Also: [`../deploy/PLATFORM-GUIDE.md`](../deploy/PLATFORM-GUIDE.md) for multi-platform context.
 
 Do not open mobile during Day 0–3 bootstrap unless a human clearly asks.
 

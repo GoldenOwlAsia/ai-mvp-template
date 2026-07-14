@@ -3,21 +3,22 @@
 > **Primary stack:** Flutter  
 > **Automation:** Fastlane  
 > **Distribution:** Firebase App Distribution, TestFlight, and Google Play Internal Testing
+> **Location in this template:** `deploy/kb/mobile/` (full runbooks below; MVP Day 1–4 web path stays optional — see `advanced/README.md`)
 
 ---
 
 ## 1. Reading order
 
 ```text
-mobile/README.md
-→ mobile/mobile-deployment-strategy.md
-→ mobile/environments.md
-→ mobile/versioning.md
-→ mobile/release-flow.md
-→ mobile/signing/*
-→ mobile/fastlane/*
-→ mobile/flutter/*
-→ mobile/checklists/*
+deploy/kb/mobile/README.md          (this file)
+→ ./mobile-deployment-strategy.md
+→ ./environments.md
+→ ./versioning.md
+→ ./release-flow.md
+→ ./signing/*
+→ ./fastlane/*
+→ ./flutter/*
+→ ./checklists/*
 ```
 
 ---
