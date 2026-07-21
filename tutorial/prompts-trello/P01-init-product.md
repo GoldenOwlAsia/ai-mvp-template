@@ -8,7 +8,7 @@ boards (projects), cards (tasks) with status TODO/IN_PROGRESS/DONE,
 members later optional, comments. P0 only: auth, projects, tasks, comments.
 Soft-delete everywhere."
 
-Fill docs/_blank (or active docs) PRD + draft docs/features for auth, project, task, comment.
+Fill docs/_blank (or copy from docs/_example-taskflow/) PRD + draft docs/features for auth, project, task, comment.
 Align with existing docs/features/*.md if present; enrich edge cases if thin.
 Summarize for confirm before any code. No bootstrap yet.
 

@@ -4,7 +4,7 @@
 2. `package.json` **name** must be `@app/web` (FIXED filter for deploy stubs — not `{slug}-web`).
 3. When `project.monorepo: true`, ensure root `pnpm-workspace.yaml` includes `apps/*`; install from repo root with `pnpm`.
 4. Pins from `packages.example.yaml`; Tailwind.
-5. Dev proxy `/api` → backend.
-6. `.env.example`: `VITE_API_URL` (local may use `/api/v1`; hosted preview/prod needs absolute API origin + `/api/v1`).
+5. Dev proxy `/api` → backend (local same-origin convenience).
+6. `.env.example`: `VITE_API_URL` — local may use relative path; **hosted** must use absolute API base when web and API are on different hosts ([`deploy/kb/deploy-invariants.md`](../../deploy/kb/deploy-invariants.md) §3). Redeploy web after changing build-time env.
 7. Install with `pnpm`.
-8. Deploy: `stack.config.yaml` → `deploy.web` (default Vercel) + root/`deploy/vercel.json` filter `@app/web`.
+8. Deploy: `stack.config.yaml` → `deploy.web` + root/`deploy/vercel.json` filter `@app/web`.

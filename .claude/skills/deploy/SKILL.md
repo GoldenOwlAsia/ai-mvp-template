@@ -117,17 +117,19 @@ On human reply:
 Order:
 
 1. Local verify (Node monorepo defaults):
-   - `pnpm install`
+   - `pnpm install` (respect lockfile discipline — invariant §5)
    - `pnpm --filter @app/web build` (if FE ≠ none)
    - `docker build -f deploy/Dockerfile.api -t api:local .` (Nest only)
 2. Database:
    - `local-docker` → `docker compose up -d`
-   - `neon` / `supabase` → ensure `DATABASE_URL` present (value hidden); `prisma migrate deploy` for Nest when appropriate
-3. API host per `deploy.api` runbook (`render.md` / `railway.md` + `docker.md`)
-4. If `WEB_ORIGIN` still needed → ask **one** question for it, then continue
-5. Web host per `deploy.web` (`vercel.md`); if `VITE_API_URL` needed → ask **one** question, then continue
-6. Smoke: `GET /health`, `GET /ready`, web load, CORS sanity
+   - hosted provider → `DATABASE_URL` present; migrate against **hosted** URL before auth smoke (invariant §4)
+3. API host per `deploy.api` runbook + container/native mode from config (invariant §6)
+4. If cross-host env still needed → ask **one** question (`WEB_ORIGIN` / web API base URL), then continue (invariant §3)
+5. Web host per `deploy.web` runbook; redeploy after build-time env changes
+6. Smoke per `deploy/kb/deploy-invariants.md` §8
 7. If `scope=production` → **stop** until human types explicit production confirm
+
+Read [`deploy/kb/deploy-invariants.md`](../../deploy/kb/deploy-invariants.md) when split-host or container issues appear.
 
 ### 6. Report (every turn that acts)
 
@@ -144,4 +146,5 @@ Order:
 - Prompt: `prompts/deploy-from-config.md`
 - Preflight: `scripts/deploy-preflight.mjs`
 - Guide: `deploy/PLATFORM-GUIDE.md`
+- Invariants: `deploy/kb/deploy-invariants.md`
 - Question catalog: `.claude/skills/deploy/reference.md`

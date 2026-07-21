@@ -64,7 +64,9 @@ Boilerplate Vite SPA defaults (when `deploy.web: vercel`):
 - `buildCommand`: `pnpm --filter @app/web build`
 - `outputDirectory`: `apps/web/dist` (or `{frontend.appDir}/dist`)
 - SPA rewrite to `/index.html`
-- Env: `VITE_API_URL` (absolute API URL + `/api/v1` for hosted builds)
+- Build env: web API base URL per [`../deploy-invariants.md`](../deploy-invariants.md) §3 when API is on another host
+
+Cross-host invariants: [`../deploy-invariants.md`](../deploy-invariants.md).
 
 ---
 

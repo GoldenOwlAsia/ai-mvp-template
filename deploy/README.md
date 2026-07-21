@@ -3,11 +3,12 @@
 ## Important docs
 
 1. **[PLATFORM-GUIDE.md](./PLATFORM-GUIDE.md)** — resolve providers from `stack.config.yaml`, then multi-platform kb.
-2. **[kb/](./kb/)** — Full knowledge base.
-3. This file — safety + stubs index.
-4. **[../prompts/deploy-from-config.md](../prompts/deploy-from-config.md)** — interactive Day-4 deploy agent (ask → act).
-5. **Skill** `.claude/skills/deploy` — preflight gaps, ask human, then preview.
-6. **Preflight** `pnpm preflight:deploy` / `node scripts/deploy-preflight.mjs --json`.
+2. **[kb/deploy-invariants.md](./kb/deploy-invariants.md)** — cross-host deploy rules (read before first hosted preview).
+3. **[kb/](./kb/)** — Full knowledge base.
+4. This file — safety + stubs index.
+5. **[../prompts/deploy-from-config.md](../prompts/deploy-from-config.md)** — interactive Day-4 deploy agent (ask → act).
+6. **Skill** `.claude/skills/deploy` — preflight gaps, ask human, then preview.
+7. **Preflight** `pnpm preflight:deploy` / `node scripts/deploy-preflight.mjs --json`.
 
 ## Claude safety (FIXED)
 

@@ -57,7 +57,7 @@ ai-mvp-template/
 | Path | Meaning | Edit? |
 |---|---|---|
 | `stack.config.yaml` | Framework + packages + features + deploy | **TUNE** ★ |
-| `stack.config.examples/*.yaml` | Nest / Laravel / Django + React samples | **REF** |
+| `stack.config.examples/*.yaml` | Nest / Laravel / Django + React; `taskflow-kanban.yaml` for tutorial | **REF** |
 | `stacks/catalog.json` | Allow-list backends/frontends | **FIXED** (add entry when adding adapter) |
 | `stacks/<fw>/CONVENTION.md` | Map product contracts → framework idioms | **REF** / TUNE with adapter |
 | `stacks/<fw>/BOOTSTRAP.md` | Scaffold + runtime/Docker notes | **REF** |
@@ -87,8 +87,8 @@ ai-mvp-template/
 | Path | Meaning | Edit? |
 |---|---|---|
 | `docs/_blank/*` | Greenfield templates | **EDIT** |
-| `docs/features/*` | Feature specs | **EDIT** ★ |
-| `docs/_example-taskflow/*` | TaskFlow tutorial | **REF** |
+| `docs/features/*` | Per-feature specs (empty in base) | **EDIT** ★ |
+| `docs/_example-taskflow/*` | Filled tutorial example (+ `features/`) | **REF** |
 | `prompts/init-product.md` | One-sentence idea → fill blank docs | **REF** |
 
 Keep Architecture **stack-agnostic** in prose; point versions to `stack.config` + adapter.

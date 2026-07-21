@@ -21,8 +21,9 @@ node scripts/apply-stack-config.mjs
 ```
 
 3. Optional: `prompts/init-product.md` with a one-sentence idea.
-4. Or use `_example-taskflow/` / fill `_blank/` + `docs/features/`.
-5. Checkpoint: confirm requirements. Note which adapters `stack.manifest.json` resolved.
+4. Or fill `docs/_blank/` + `docs/features/` for your product.
+5. **Tutorial track only:** copy `docs/_example-taskflow/` → `docs/` (see `docs/_example-taskflow/EXAMPLE.md`) + `stack.config.examples/taskflow-kanban.yaml`.
+6. Checkpoint: confirm requirements. Note which adapters `stack.manifest.json` resolved.
 
 ## Done when
 

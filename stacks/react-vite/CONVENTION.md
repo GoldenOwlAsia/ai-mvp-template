@@ -21,3 +21,4 @@ types → API service → TanStack Query hooks → components → page
 - Access token in memory
 - Refresh via httpOnly cookie + credentials
 - RHF + Zod; loading / empty / error states
+- Hosted API base URL: absolute when web and API hosts differ ([`deploy/kb/deploy-invariants.md`](../../deploy/kb/deploy-invariants.md) §3)

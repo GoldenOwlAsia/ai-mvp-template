@@ -31,7 +31,7 @@ Configure, deploy, verify, and roll back a backend web service on Render without
 |---|---|---|
 | `DATABASE_URL` | yes | From `database.provider` (Neon / Supabase / …) |
 | `JWT_ACCESS_SECRET` | yes | Never commit; rotate if leaked |
-| `WEB_ORIGIN` | yes | Frontend origin (Vercel URL) for CORS + cookies |
+| `WEB_ORIGIN` | yes | Browser origin(s) for CORS + cookies — set on **API** host ([`deploy-invariants.md`](../deploy-invariants.md) §3) |
 | `PORT` | yes | Render may inject; Nest binds `0.0.0.0` |
 | `NODE_ENV` | yes | `production` on hosted |
 | `REFRESH_DAYS` | recommended | Refresh cookie TTL |
@@ -47,9 +47,10 @@ Preferred MVP path:
 1. Confirm `deploy.api: render` in `stack.config.yaml`.
 2. Use root [`render.yaml`](../../../render.yaml) (keep in sync with `deploy/render.yaml`).
 3. `dockerfilePath: ./deploy/Dockerfile.api`, `dockerContext: .`, `healthCheckPath: /health`.
-4. Create/update Web Service from Blueprint or dashboard.
-5. Fill `DATABASE_URL`, `JWT_ACCESS_SECRET`, `WEB_ORIGIN` in dashboard.
+4. Create/update Web Service from Blueprint or dashboard (Docker runtime; build/start commands empty when using Dockerfile).
+5. Fill env vars in dashboard (`sync: false` keys in blueprint).
 6. Deploy preview/staging first.
+7. Migrate hosted DB before auth smoke ([`../deploy-invariants.md`](../deploy-invariants.md) §4).
 
 Local image check:
 
@@ -57,14 +58,16 @@ Local image check:
 docker build -f deploy/Dockerfile.api -t api:local .
 ```
 
+Container layout invariants: [`../deploy-invariants.md`](../deploy-invariants.md) §1–2.
+
 ---
 
 ## 5. Health and smoke
 
 - `GET /health` — process up
 - `GET /ready` — DB reachable
-- Confirm CORS with `WEB_ORIGIN`
-- Confirm FE `VITE_API_URL` points at this service `/api/v1`
+- Cross-origin smoke per [`../deploy-invariants.md`](../deploy-invariants.md) §3, §8
+- Web build env points at this service when hosts differ
 
 ---
 

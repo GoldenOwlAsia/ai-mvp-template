@@ -8,8 +8,8 @@
 | `workflow.md` | Phase 0→4 + sample prompts |
 | `prompt-strategy.md` | Confirm / checkpoint / negative-constraint PATTERN |
 | `best-practice.md` | Docs/prompt/workflow lessons |
-| `docs/PRD.md` … `CodingConvention.md` | TaskFlow example + conventions |
-| `docs/features/[feature-name].md` | Feature template (fill auth/task/…) |
+| `docs/_example-taskflow/PRD.md` … `CodingConvention.md` | Kanban tutorial example (REF) |
+| `docs/_example-taskflow/features/[feature-name].md` | Tutorial feature specs |
 | `templates/*` | Blank PRD/Arch/DB/API |
 | `research/context-loading.md` | How Claude Code loads context |
 

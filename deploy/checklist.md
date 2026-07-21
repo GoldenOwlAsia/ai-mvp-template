@@ -18,11 +18,12 @@ Providers come from `stack.config.yaml` (`deploy.*`, `database.provider`) — do
 - [ ] Scope reviewed; unrelated changes excluded
 - [ ] Lint / typecheck / tests green in CI
 - [ ] `stack.config.yaml` pins unchanged unless intentional
-- [ ] Package names `@app/web` / `@app/api` + root `pnpm-workspace.yaml` when monorepo
-- [ ] Target branch and URLs correct
-- [ ] Env vars present in provider (see `.env.example` keys + PLATFORM-GUIDE inventory)
+- [ ] Package names + workspace layout match deploy stubs when monorepo
+- [ ] Lockfile discipline: one package manager; manifest ↔ lock in sync
+- [ ] Container/native targets match adapter BOOTSTRAP (invariants §1–2)
+- [ ] Env vars on the **correct** provider layer (web build vs API runtime)
+- [ ] Hosted DB migrate planned against hosted `DATABASE_URL` (invariant §4)
 - [ ] No secrets in repo or workflow logs
-- [ ] Migration reviewed; staging migrate succeeds
 - [ ] Rollback target (previous image / deployment) known
 
 ## Secrets
@@ -36,5 +37,7 @@ Providers come from `stack.config.yaml` (`deploy.*`, `database.provider`) — do
 
 - [ ] `GET /health` → ok
 - [ ] `GET /ready` → ready (DB)
-- [ ] Web loads; login works; CORS/`WEB_ORIGIN` correct
-- [ ] Create + soft-delete a domain entity
+- [ ] Cross-origin checks pass when web ≠ API ([`kb/deploy-invariants.md`](./kb/deploy-invariants.md) §3, §8)
+- [ ] Register/login or one domain write path works
+
+See also: [`kb/deploy-invariants.md`](./kb/deploy-invariants.md).

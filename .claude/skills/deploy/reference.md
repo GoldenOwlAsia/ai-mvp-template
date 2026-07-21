@@ -29,3 +29,7 @@ If `scope=production`, require an additional human message that clearly confirms
 - Prefer: human sets env in shell / provider UI; agent re-runs preflight.
 - If pasted in chat: use for the session action only; never write into git-tracked files; never reprint in full in the final report.
 - Report only: `DATABASE_URL=present|missing`, never the value.
+
+## Deploy invariants
+
+When smoke fails on hosted preview, read [`deploy/kb/deploy-invariants.md`](../../deploy/kb/deploy-invariants.md) — layout parity, split-host env, DB migrate target, lockfile discipline. Diagnose from config + adapters, not a fixed provider combo.

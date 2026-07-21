@@ -29,6 +29,7 @@ Product idea          → prompts/init-product.md → docs/_blank + docs/feature
 Bootstrap apps        → prompts/bootstrap-from-config.md + adapter BOOTSTRAP.md
 Feature loop          → docs/features/[name].md → prompts/generate-*.md
 Deploy                → prompts/deploy-from-config.md + skill deploy + pnpm preflight:deploy
+                        (+ deploy/kb/deploy-invariants.md before first hosted preview)
 Tutorial              → tutorial/DAY0 → DAY4
 ```
 

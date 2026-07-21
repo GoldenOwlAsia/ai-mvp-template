@@ -2,8 +2,8 @@
 # Switch backend: copy stack.config.examples/laravel-react.yaml or django-react.yaml
 
 project:
-  name: taskflow
-  slug: taskflow
+  name: my-app
+  slug: my-app
   locale: en
   packageManager: pnpm
   node: "20"
@@ -32,9 +32,6 @@ frontend:
     "class-variance-authority": "0.7.0"
     clsx: "2.1.1"
     "tailwind-merge": "2.5.2"
-    "@dnd-kit/core": "6.1.0"
-    "@dnd-kit/sortable": "8.0.0"
-    "@dnd-kit/utilities": "3.2.2"
     vite: "5.4.11"
     "@vitejs/plugin-react": "4.3.2"
     typescript: "5.6.2"

@@ -2,8 +2,8 @@
 # Switch backend: copy stack.config.examples/laravel-react.yaml or django-react.yaml
 
 project:
-  name: taskflow
-  slug: taskflow
+  name: my-app
+  slug: my-app
   locale: en
   packageManager: pnpm
   node: "20"

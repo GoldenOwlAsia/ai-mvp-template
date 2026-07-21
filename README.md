@@ -47,8 +47,8 @@ ai-mvp-template/
 | [`prompts/`](./prompts/) | Generic prompts: init-product, bootstrap, input/service/HTTP/FE, tests, security | Reference from chat / sample packs |
 | [`docs/`](./docs/) | Product specs | **Edit** features for your app |
 | `docs/_blank/` | Empty PRD / Architecture / API / … templates | Fill for a new product |
-| `docs/_example-taskflow/` | Filled TaskFlow (Trello-like) example | Learn / fork |
-| `docs/features/` | Per-feature specs (auth, project, task, comment, …) | **Edit** ★ before coding |
+| `docs/features/` | Per-feature specs for **your** app | **Edit** ★ before coding (empty in base) |
+| `docs/_example-taskflow/` | Filled Kanban tutorial example (+ `features/`) | Copy for tutorial only — see `EXAMPLE.md` |
 | [`docs/FOLDER-GUIDE.md`](./docs/FOLDER-GUIDE.md) | Full EDIT / FIXED / GEN / REF map | Read when unsure what to touch |
 | [`deploy/`](./deploy/) | Platform guide, checklists, Docker/Railway/Vercel stubs, `kb/` runbooks | Day 4; change providers via guide + config |
 | [`tutorial/`](./tutorial/) | Day 0–4 walkthrough | Follow in order |

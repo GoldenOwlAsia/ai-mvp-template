@@ -9,5 +9,6 @@ alwaysApply: true
 - Never auto-deploy production. Ask for explicit human confirmation.
 - Commit only `.env.example` — never real `.env`.
 - Follow `deploy/PLATFORM-GUIDE.md` + `deploy/kb/` for platform choice.
-- Runtime / Dockerfile details: active backend adapter `BOOTSTRAP.md` (Node / PHP-FPM / Gunicorn).
-- Migrate database once per deploy; keep previous image for rollback.
+- Runtime / Dockerfile: active backend adapter `BOOTSTRAP.md`.
+- When web, API, and DB are on different hosts: follow `deploy/kb/deploy-invariants.md`.
+- Migrate database once per deploy (hosted URL when applicable); keep previous image for rollback.

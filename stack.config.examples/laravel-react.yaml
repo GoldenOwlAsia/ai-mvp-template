@@ -1,7 +1,7 @@
 # Laravel + React/Vite
 project:
-  name: taskflow
-  slug: taskflow
+  name: my-app
+  slug: my-app
   locale: en
   packageManager: pnpm
   node: "20"

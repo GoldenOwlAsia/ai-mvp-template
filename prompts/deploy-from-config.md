@@ -42,12 +42,12 @@ When the required queue is empty:
 
 ### D. Act (preview / local)
 
-1. Read matching `deploy/kb` runbooks for `deploy.web` / `deploy.api` / `database.provider`
-2. Local builds: `@app/web`, Nest `Dockerfile.api` when applicable
-3. DB migrate when URL present (Nest: `prisma migrate deploy`)
+1. Read matching `deploy/kb` runbooks + [`deploy/kb/deploy-invariants.md`](../deploy/kb/deploy-invariants.md)
+2. Local builds per active adapters
+3. DB migrate against hosted URL when applicable
 4. Deploy API → note URL (do not invent)
-5. If URLs now known and env still missing → ask **one** follow-up (`WEB_ORIGIN` / `VITE_API_URL`), then continue
-6. Deploy web; smoke `/health` `/ready` + web load
+5. If cross-host env still missing → ask **one** follow-up, then continue
+6. Deploy web; smoke per invariants §8
 
 ### E. Production
 
@@ -69,3 +69,4 @@ Only if `scope=production` **and** human sends an explicit production confirm in
 - Committing `.env` secrets
 - Using Node `Dockerfile.api` for Laravel/Django
 - Production without explicit confirm
+- Mixing package managers or desyncing lockfile from manifest on hosted build

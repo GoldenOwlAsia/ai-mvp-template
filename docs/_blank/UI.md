@@ -16,8 +16,8 @@
 **Icon:** Lucide React — `import { IconName } from 'lucide-react'`
 **Form:** React Hook Form + Zod
 **Toast:** Sonner — `import { toast } from 'sonner'`
-**Date:** date-fns
-**Drag & Drop:** @dnd-kit/core (Kanban board)
+**Date:** date-fns (if needed)
+**Drag & Drop:** only if your product needs it — add the library in `stack.config.yaml` first
 
 ### Import Convention
 

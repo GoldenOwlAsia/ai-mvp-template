@@ -16,7 +16,7 @@ Architecture.md describes the stack in prose → AI still guesses versions / for
 
 ```yaml
 project:
-  name: taskflow
+  name: my-app
   locale: en
   packageManager: pnpm
   node: "20"

@@ -64,6 +64,7 @@ pnpm exec prisma migrate deploy
 
 Rules:
 
+- Migrate against the hosted `DATABASE_URL` the API will use — not only local ([`../deploy-invariants.md`](../deploy-invariants.md) §4)
 - Staging migrate before production
 - Never invent connection strings
 - Expand/contract for risky changes

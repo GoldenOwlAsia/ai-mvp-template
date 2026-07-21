@@ -67,6 +67,10 @@ Do not ignore source files required by the build. Validate with a clean CI build
 
 ## 4. Node/NestJS example
 
+**This boilerplate:** use the maintained stub [`../../Dockerfile.api`](../../Dockerfile.api). Preserve monorepo install layout in the runner — see [`../deploy-invariants.md`](../deploy-invariants.md) §1–2.
+
+Generic single-package illustration (not the monorepo stub):
+
 ```dockerfile
 # syntax=docker/dockerfile:1
 

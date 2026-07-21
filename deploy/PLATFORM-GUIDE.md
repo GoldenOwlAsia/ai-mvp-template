@@ -120,11 +120,13 @@ database:
 
 | Variable | Layer | Typical host |
 |---|---|---|
-| `VITE_API_URL` | Web build | Vercel (absolute `https://…/api/v1` when hosted) |
-| `DATABASE_URL` | API | Render / Railway ← Neon / Supabase / local |
-| `JWT_ACCESS_SECRET` | API | Render / Railway |
-| `WEB_ORIGIN` | API | Frontend origin (Vercel URL) |
-| `PORT` / `NODE_ENV` / `REFRESH_DAYS` | API | Provider + Nest bootstrap |
+| `VITE_API_URL` | Web build | Absolute API base when web and API hosts differ (invariant §3) |
+| `DATABASE_URL` | API | From `database.provider` |
+| `JWT_ACCESS_SECRET` | API | API host |
+| `WEB_ORIGIN` | API | Browser origin(s) — API host, not web host |
+| `PORT` / `NODE_ENV` / `REFRESH_DAYS` | API | Provider + adapter bootstrap |
+
+Deploy invariants (split-host, container, migrate): [`kb/deploy-invariants.md`](./kb/deploy-invariants.md).
 
 ---
 
@@ -211,5 +213,6 @@ Per the original contract in `kb/00-README-SOURCE.md`:
 | Other BE | [`kb/backend/alternatives.md`](./kb/backend/alternatives.md) |
 | DB Neon | [`kb/database/neon.md`](./kb/database/neon.md) |
 | DB / migrate | [`kb/database/`](./kb/database/) |
+| MVP invariants | [`kb/deploy-invariants.md`](./kb/deploy-invariants.md) |
 | Mobile | [`kb/mobile/README.md`](./kb/mobile/README.md) |
 | Agent prompt | [`../prompts/deploy-from-config.md`](../prompts/deploy-from-config.md) |
