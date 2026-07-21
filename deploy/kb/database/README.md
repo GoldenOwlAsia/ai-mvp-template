@@ -1,6 +1,10 @@
 # Database Deployment Runbooks
 
-> **Scope:** Supabase/PostgreSQL environments, migrations, backups, restores, and production safety
+> **Scope:** Supabase/Neon/PostgreSQL environments, migrations, backups, restores, and production safety
+>
+> Provider runbooks: [`supabase.md`](./supabase.md) · [`neon.md`](./neon.md) · [`migration.md`](./migration.md) · [`backup-restore.md`](./backup-restore.md)
+>
+> Resolve provider from `stack.config.yaml` → `database.provider`.
 
 ---
 

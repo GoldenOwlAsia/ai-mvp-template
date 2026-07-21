@@ -31,14 +31,17 @@ Do not choose Kubernetes for an MVP without a platform-team requirement.
 
 Use for straightforward web services, workers, and scheduled jobs.
 
+**Executable runbook:** [`render.md`](./render.md) (when `stack.config.yaml` → `deploy.api: render`).
+
 Minimum configuration:
 
-- Build/start commands or Dockerfile.
-- Health-check path.
+- Build/start commands or Dockerfile (`deploy/Dockerfile.api` for Nest/Node).
+- Health-check path (`/health`).
 - Environment groups separated by environment.
 - Persistent disk only when required.
 - Production branch and auto-deploy policy.
 - Preview environment policy.
+- Blueprint: root `render.yaml` (sync with `deploy/render.yaml`).
 
 Verify current blueprint syntax before committing `render.yaml`.
 

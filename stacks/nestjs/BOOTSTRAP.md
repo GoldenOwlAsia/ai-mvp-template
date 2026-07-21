@@ -9,17 +9,19 @@
 ## Scaffold checklist
 
 1. Create `backend.appDir` (default `apps/api`) Nest layout.
-2. Prisma schema with soft-delete timestamps.
-3. Global prefix `api/v1`; exclude `health` / `ready`.
-4. Cookie-parser + CORS + ValidationPipe.
-5. `.env.example`: `DATABASE_URL`, `JWT_ACCESS_SECRET`, `PORT`, `WEB_ORIGIN`.
-6. Package manager: `pnpm`.
+2. `package.json` **name** must be `@app/api` (FIXED filter for deploy stubs — not `{slug}-api`).
+3. When `project.monorepo: true`, ensure root `pnpm-workspace.yaml` includes `apps/*`; install from repo root with `pnpm`.
+4. Prisma schema with soft-delete timestamps.
+5. Global prefix `api/v1`; exclude `health` / `ready`.
+6. Cookie-parser + CORS + ValidationPipe.
+7. `.env.example` (names only): `DATABASE_URL`, `JWT_ACCESS_SECRET`, `REFRESH_DAYS`, `PORT`, `WEB_ORIGIN`, `NODE_ENV`.
+8. Package manager: `pnpm`.
 
 ## Runtime / Docker
 
 - Bind `0.0.0.0` + `PORT`; `GET /health`, `GET /ready`
-- Default stub: `deploy/Dockerfile.api` (Node multi-stage)
-- See `deploy/PLATFORM-GUIDE.md`
+- Default stub: `deploy/Dockerfile.api` (Node multi-stage; filter `@app/api`, path `apps/api` unless `backend.appDir` differs)
+- Providers from `stack.config.yaml` → `deploy.api` (e.g. railway | render) + `deploy/PLATFORM-GUIDE.md`
 
 ## Do not
 

@@ -1,15 +1,34 @@
 # Claude + Multi-platform Deploy
 
-> This doc connects the MVP template to the full knowledge under `deploy/kb/` (copied from `/Users/mac/Downloads/deployment`).
-> **MVP golden path (3–4 days):** Vercel (web) + Railway+Docker (api) + Postgres (Supabase/Neon/local).
-> **Multi-platform:** Claude chooses platforms from the matrix — no guessing, no inventing credentials.
+> This doc connects the MVP **boilerplate** to knowledge under `deploy/kb/`.
+> **Providers are not assumed:** read `stack.config.yaml` → `deploy.*` + `database.provider`, then open the matching runbook.
+> Common MVP combos: Vercel + Railway|Render + Docker API + Postgres (local-docker | Supabase | Neon).
+> **Multi-platform:** no guessing, no inventing credentials.
+
+---
+
+## 0. Boilerplate monorepo conventions (FIXED)
+
+When `project.monorepo: true` and Node FE/BE (Nest + React Vite):
+
+| Item | Convention |
+|---|---|
+| Workspace | Root `pnpm-workspace.yaml` → `packages: ["apps/*"]` |
+| FE package name | `@app/web` |
+| API package name | `@app/api` |
+| App dirs | `frontend.appDir` / `backend.appDir` (defaults `apps/web`, `apps/api`) |
+| Install | `pnpm install` at **repo root** after bootstrap |
+
+Stubs (`vercel.json`, `Dockerfile.api`, `render.yaml`) filter these package names — do **not** rename to `{slug}-web`.
+
+Root `vercel.json` / `render.yaml` are what providers read; keep them in sync with copies under `deploy/`.
 
 ---
 
 ## 1. What Claude must do on deploy
 
 ```text
-1. Read stack.config.yaml → deploy block + database.provider + backend.framework
+1. Read stack.config.yaml → deploy block + database.provider + backend.framework + appDir
 2. Read this doc + deploy/README.md (safety)
 3. Read stacks/<backend.framework>/BOOTSTRAP.md → Runtime / Docker section
 4. If CHANGING platform / choosing for the first time → deploy/kb/platform-matrix.md
@@ -19,7 +38,7 @@
 8. Production only when human confirms clearly
 ```
 
-**Forbidden:** auto-deploy prod · invent Railway/Vercel/DB IDs · skip secrets.md · pick K8s for MVP without a reason · use Node `Dockerfile.api` for Laravel/Django.
+**Forbidden:** auto-deploy prod · invent Railway/Vercel/Render/DB IDs · skip secrets.md · pick K8s for MVP without a reason · use Node `Dockerfile.api` for Laravel/Django.
 
 ## 1.1 Runtime by stack adapter
 
@@ -41,7 +60,7 @@ Full source: [`kb/platform-matrix.md`](./kb/platform-matrix.md).
 
 | Platform | When | Runbook |
 |---|---|---|
-| **Vercel** | Default SPA/Vite/Next MVP | [`kb/web/vercel.md`](./kb/web/vercel.md) + stub `vercel.json` |
+| **Vercel** | Default SPA/Vite/Next MVP | [`kb/web/vercel.md`](./kb/web/vercel.md) + root/`deploy/vercel.json` |
 | Cloudflare Pages | Static/SPA edge | [`kb/web/alternatives.md`](./kb/web/alternatives.md) |
 | Netlify | Small Jamstack | alternatives |
 | Firebase Hosting | Firebase-centric FE | alternatives |
@@ -51,10 +70,10 @@ Full source: [`kb/platform-matrix.md`](./kb/platform-matrix.md).
 
 | Platform | When | Runbook |
 |---|---|---|
-| **Railway** | Default MVP API | [`kb/backend/railway.md`](./kb/backend/railway.md) |
+| **Railway** | Common MVP API | [`kb/backend/railway.md`](./kb/backend/railway.md) + `railway.toml` |
+| **Render** | Simple web service + Docker | [`kb/backend/render.md`](./kb/backend/render.md) + root/`deploy/render.yaml` |
 | Docker (anywhere) | Portable boundary | [`kb/backend/docker.md`](./kb/backend/docker.md) + `Dockerfile.api` |
-| Render | Simple web service + worker | [`kb/backend/alternatives.md`](./kb/backend/alternatives.md) |
-| Fly.io | Multi-region container | alternatives |
+| Fly.io | Multi-region container | [`kb/backend/alternatives.md`](./kb/backend/alternatives.md) |
 | Cloud Run | GCP serverless container | alternatives |
 | ECS / EC2 / K8s | AWS / large scale | alternatives — **not default MVP** |
 
@@ -64,7 +83,7 @@ Full source: [`kb/platform-matrix.md`](./kb/platform-matrix.md).
 |---|---|---|
 | local-docker | Dev Day 0–1 | root `docker-compose.yml` |
 | **Supabase** | PG + optional auth/storage | [`kb/database/supabase.md`](./kb/database/supabase.md) |
-| Neon | Serverless PG / branching | matrix + migration.md (no dedicated runbook yet — use Prisma migrate) |
+| **Neon** | Serverless PG / branching | [`kb/database/neon.md`](./kb/database/neon.md) + [`migration.md`](./kb/database/migration.md) |
 | RDS | AWS-governed | matrix |
 
 Always read [`kb/database/migration.md`](./kb/database/migration.md) before migrating prod.
@@ -93,24 +112,37 @@ database:
 
 | When changing `deploy.*` | Claude does |
 |---|---|
-| Still in the table above | Change config → read the matching runbook under `kb/` → update stubs (`vercel.json` / Railway / Dockerfile) |
+| Still in the table above | Change config → read the matching runbook under `kb/` → update stubs (`vercel.json` / `render.yaml` / Railway / Dockerfile) |
 | Outside the table / no runbook | **Stop and ask a human** — do not invent deploy steps |
 | Mobile | Confirm with human — do not open Fastlane on your own |
+
+### Env inventory (cross-provider names)
+
+| Variable | Layer | Typical host |
+|---|---|---|
+| `VITE_API_URL` | Web build | Vercel (absolute `https://…/api/v1` when hosted) |
+| `DATABASE_URL` | API | Render / Railway ← Neon / Supabase / local |
+| `JWT_ACCESS_SECRET` | API | Render / Railway |
+| `WEB_ORIGIN` | API | Frontend origin (Vercel URL) |
+| `PORT` / `NODE_ENV` / `REFRESH_DAYS` | API | Provider + Nest bootstrap |
 
 ---
 
 ## 4. Read order by situation
 
-### A. Day 4 MVP (golden path)
+### A. Day 4 MVP (resolve from config)
 
 ```text
 deploy/README.md
-→ PLATFORM-GUIDE.md (this doc)
+→ PLATFORM-GUIDE.md (this doc) §0 conventions + §3 config
 → kb/environment.md + kb/secrets.md
-→ kb/web/vercel.md
-→ kb/backend/docker.md + kb/backend/railway.md
+→ kb for deploy.web (e.g. kb/web/vercel.md)
+→ kb/backend/docker.md + kb for deploy.api (railway.md | render.md | …)
+→ kb for database.provider (supabase.md | neon.md | local compose)
 → kb/database/migration.md
 → checklist.md / kb/deployment-checklist.md
+→ optional: prompts/deploy-from-config.md + skill deploy (ask→act)
+→ pnpm preflight:deploy (-- --json)
 ```
 
 ### B. Choose / change platform
@@ -119,7 +151,8 @@ deploy/README.md
 kb/platform-matrix.md
 → kb/web/alternatives.md or kb/backend/alternatives.md
 → specific runbook (if any)
-→ update stack.config deploy.*
+→ update stack.config deploy.* / database.provider
+→ sync root stubs (vercel.json / render.yaml / railway.toml)
 ```
 
 ### C. Incidents / rollback
@@ -142,10 +175,10 @@ kb/ci-cd.md → copy workflows from deploy/.github/ into root `.github/` when re
 |---|---|---|
 | `README.md` | Safety + short golden path | FIXED safety |
 | `PLATFORM-GUIDE.md` | **Claude multi-platform doc (this file)** | REF / TUNE when adding platforms |
-| `Dockerfile.api`, `railway.toml`, `vercel.json` | Golden-path implementation stubs | TUNE Day 4 |
+| `Dockerfile.api`, `railway.toml`, `vercel.json`, `render.yaml` | Provider stubs (also root `vercel.json` / `render.yaml`) | TUNE Day 4 |
 | `checklist.md` | Short MVP checklist | TUNE |
 | `.github/workflows/*` | CI skeleton | TUNE |
-| `kb/**` | Multi-platform runbook library (from deployment/) | **REF** — prefer upstream updates from `deployment/`; avoid casual forks |
+| `kb/**` | Multi-platform runbook library | **REF** — prefer upstream updates; avoid casual forks |
 
 ---
 
@@ -153,7 +186,7 @@ kb/ci-cd.md → copy workflows from deploy/.github/ into root `.github/` when re
 
 Per the original contract in `kb/00-README-SOURCE.md`:
 
-- Platform chosen + reason (+ alternatives rejected)
+- Platform chosen + reason (+ alternatives rejected) — must match `stack.config.yaml`
 - Env/secrets: present / missing (do not print values)
 - Commands run / to run
 - Smoke result
@@ -173,7 +206,10 @@ Per the original contract in `kb/00-README-SOURCE.md`:
 | Web Vercel | [`kb/web/vercel.md`](./kb/web/vercel.md) |
 | Other web | [`kb/web/alternatives.md`](./kb/web/alternatives.md) |
 | BE Railway | [`kb/backend/railway.md`](./kb/backend/railway.md) |
+| BE Render | [`kb/backend/render.md`](./kb/backend/render.md) |
 | BE Docker | [`kb/backend/docker.md`](./kb/backend/docker.md) |
 | Other BE | [`kb/backend/alternatives.md`](./kb/backend/alternatives.md) |
+| DB Neon | [`kb/database/neon.md`](./kb/database/neon.md) |
 | DB / migrate | [`kb/database/`](./kb/database/) |
 | Mobile | [`kb/mobile/README.md`](./kb/mobile/README.md) |
+| Agent prompt | [`../prompts/deploy-from-config.md`](../prompts/deploy-from-config.md) |

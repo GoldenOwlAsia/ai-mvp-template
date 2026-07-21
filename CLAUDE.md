@@ -1,8 +1,10 @@
-# Claude MVP Template
+# ai-mvp-template
 
 > Read first every session. Pointer + product contracts. Versions/stack: only `stack.config.yaml` + `stacks/`.
 
-**Folder map (EDIT vs FIXED):** `docs/FOLDER-GUIDE.md`
+**Folder map (EDIT vs FIXED):** `docs/FOLDER-GUIDE.md`  
+**Repo:** `ai-mvp-template`
+
 
 ---
 
@@ -26,7 +28,7 @@ Active adapters       → stacks/<backend>/ + stacks/<frontend>/ (if not none)
 Product idea          → prompts/init-product.md → docs/_blank + docs/features/
 Bootstrap apps        → prompts/bootstrap-from-config.md + adapter BOOTSTRAP.md
 Feature loop          → docs/features/[name].md → prompts/generate-*.md
-Deploy                → deploy/PLATFORM-GUIDE.md + deploy/kb/
+Deploy                → prompts/deploy-from-config.md + skill deploy + pnpm preflight:deploy
 Tutorial              → tutorial/DAY0 → DAY4
 ```
 

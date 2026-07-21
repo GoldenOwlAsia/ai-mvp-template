@@ -50,11 +50,21 @@ Recommended repository files:
 
 ```text
 package.json
+pnpm-workspace.yaml          # monorepo: packages apps/*
+apps/web/package.json        # name: @app/web (FIXED boilerplate)
 package-lock.json | pnpm-lock.yaml | yarn.lock | bun.lock
 .env.example
 .nvmrc | .node-version
-vercel.json, only when project-level configuration is required
+vercel.json                  # repo root; sync with deploy/vercel.json
 ```
+
+Boilerplate Vite SPA defaults (when `deploy.web: vercel`):
+
+- `installCommand`: `pnpm install`
+- `buildCommand`: `pnpm --filter @app/web build`
+- `outputDirectory`: `apps/web/dist` (or `{frontend.appDir}/dist`)
+- SPA rewrite to `/index.html`
+- Env: `VITE_API_URL` (absolute API URL + `/api/v1` for hosted builds)
 
 ---
 

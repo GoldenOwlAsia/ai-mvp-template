@@ -19,7 +19,7 @@ Base **has no `apps/`**. Framework choice does **not** change the MVP workflow �
 ## Top-level tree
 
 ```text
-claude-mvp-template/
+ai-mvp-template/
 ├── CLAUDE.md / AGENTS.md
 ├── stack.config.yaml              TUNE ★ pick nestjs|laravel|django + FE
 ├── stack.config.examples/         REF ready configs
@@ -27,11 +27,13 @@ claude-mvp-template/
 │   ├── catalog.json               FIXED allow-list
 │   ├── nestjs|laravel|django/     TUNE when extending ecosystem
 │   └── react-vite/
-├── scripts/validate|apply         FIXED
+├── scripts/validate|apply|preflight  FIXED / TUNE
 ├── prompts/                       stack-agnostic + init-product
 ├── .cursor/rules/                 product FIXED + stack-resolution
 ├── docs/                          EDIT product; REF examples
 ├── deploy/                        multi-platform + runtime notes
+├── pnpm-workspace.yaml            GEN after monorepo bootstrap (apps/*)
+├── vercel.json / render.yaml      TUNE provider stubs (sync with deploy/)
 └── tutorial/
 ```
 
@@ -61,6 +63,7 @@ claude-mvp-template/
 | `stacks/<fw>/BOOTSTRAP.md` | Scaffold + runtime/Docker notes | **REF** |
 | `stacks/<fw>/packages.example.yaml` | Pin source to copy into config | **REF** |
 | `scripts/validate-stack-config.mjs` | Catalog + language↔framework + feature hints | **FIXED** |
+| `scripts/deploy-preflight.mjs` | Deploy gaps + questions JSON for ask→act agent | **FIXED** |
 | `scripts/apply-stack-config.mjs` | Manifest with `adapters.*` paths | **FIXED** |
 | `stack.manifest.json` | Resolved adapters snapshot | **GEN** |
 
@@ -98,6 +101,7 @@ Keep Architecture **stack-agnostic** in prose; point versions to `stack.config` 
 |---|---|
 | `init-product.md` | Domain docs only |
 | `bootstrap-from-config.md` | Scaffold via active adapters |
+| `deploy-from-config.md` | Interactive deploy agent (preflight → ask → preview) |
 | `generate-input-layer.md` | DTO / FormRequest / Serializer |
 | `generate-service.md` / `generate-controller.md` | Per adapter HTTP/service |
 | `generate-fe-page.md` | If FE ≠ none |
@@ -111,7 +115,9 @@ Keep Architecture **stack-agnostic** in prose; point versions to `stack.config` 
 |---|---|---|
 | `deploy/PLATFORM-GUIDE.md` | Multi-platform + **runtime by adapter** | **REF** |
 | `deploy/kb/` | Runbooks | **REF** |
-| `deploy/Dockerfile.api` | **Node/Nest default only** | **TUNE**; Laravel/Django use adapter Docker notes |
+| `deploy/Dockerfile.api` | **Node/Nest default only** (`@app/api`) | **TUNE**; Laravel/Django use adapter Docker notes |
+| `vercel.json` / `render.yaml` (root + `deploy/`) | Provider stubs from `deploy.*` | **TUNE**; keep root ↔ `deploy/` in sync |
+| Package names `@app/web` / `@app/api` | FIXED filters for stubs | **FIXED** convention (not `{slug}-*`) |
 | Stubs vercel/railway | Golden path | **TUNE** |
 
 ---

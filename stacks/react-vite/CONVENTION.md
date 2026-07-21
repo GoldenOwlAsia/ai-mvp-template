@@ -1,9 +1,15 @@
 # React + Vite adapter — conventions
 
+## Package identity
+
+- `package.json` name: **`@app/web`** (boilerplate FIXED — used by `vercel.json` and pnpm filters).
+
 ## Layout
 
 ```text
-apps/web/src/{lib,pages,components}
+apps/web/
+  package.json          # name: @app/web
+  src/{lib,pages,components}
 ```
 
 ## Generation order

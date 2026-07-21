@@ -1,11 +1,17 @@
-# Multi-stage Nest API image — build from monorepo root:
-#   docker build -f deploy/Dockerfile.api -t taskflow-api .
+# Multi-stage Nest/Node API image — build from monorepo root:
+#   docker build -f deploy/Dockerfile.api -t api .
+#
+# Assumes:
+#   - pnpm-workspace.yaml includes apps/*
+#   - package name @app/api (FIXED boilerplate convention)
+#   - backend.appDir default apps/api (change COPY paths if appDir differs)
+# Laravel / Django: do NOT use this file — see stacks/<framework>/BOOTSTRAP.md
+
 FROM node:20-alpine AS deps
 WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@9.12.0 --activate
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml* ./
 COPY apps/api/package.json apps/api/
-COPY packages/shared/package.json packages/shared/
 RUN pnpm install --filter @app/api... --frozen-lockfile || pnpm install --filter @app/api...
 
 FROM node:20-alpine AS build

@@ -1,0 +1,27 @@
+# Render Blueprint stub (documented copy). Prefer root `render.yaml` for Blueprint sync.
+# Values for env vars are set in the Render dashboard (never commit secrets).
+# Service name: use project.slug from stack.config.yaml when creating the service.
+#
+# Active when stack.config.yaml → deploy.api: render
+
+services:
+  - type: web
+    name: api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./deploy/Dockerfile.api
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3000"
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        sync: false
+      - key: WEB_ORIGIN
+        sync: false
+      - key: REFRESH_DAYS
+        value: "7"

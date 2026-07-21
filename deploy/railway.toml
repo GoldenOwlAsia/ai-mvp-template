@@ -1,5 +1,7 @@
+# Alternate stub when stack.config.yaml → deploy.api: railway
 # Place at repo root or configure Railway service to use this file.
 # Dockerfile path relative to repo root.
+# If deploy.api is render, use root render.yaml instead.
 
 [build]
 builder = "DOCKERFILE"

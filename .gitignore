@@ -16,3 +16,4 @@ apps/api/prisma/*.db-journal
 .idea
 .vscode/*
 !.vscode/extensions.json
+apps

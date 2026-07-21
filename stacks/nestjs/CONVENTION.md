@@ -2,10 +2,15 @@
 
 Maps **product contracts** → NestJS + Prisma idioms.
 
+## Package identity
+
+- `package.json` name: **`@app/api`** (boilerplate FIXED — used by `deploy/Dockerfile.api` and pnpm filters).
+
 ## Layout
 
 ```text
 apps/api/
+  package.json          # name: @app/api
   prisma/schema.prisma
   src/
     main.ts

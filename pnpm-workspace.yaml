@@ -1,0 +1,4 @@
+# Node monorepo when project.monorepo: true (Nest/React Vite).
+# Package names FIXED: @app/web, @app/api — see stacks/*/BOOTSTRAP.md
+packages:
+  - "apps/*"

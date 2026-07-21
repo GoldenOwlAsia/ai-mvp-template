@@ -1,8 +1,8 @@
-# Claude MVP Template — Base (docs + config + stack adapters)
+# ai-mvp-template — Base (docs + config + stack adapters)
 
-Generate any CRUD-style MVP with Claude. **Product workflow is the same**; **NestJS / Laravel / Django** (and React Vite FE) are chosen in config and implemented via `stacks/` adapters.
+Generate any CRUD-style MVP with an AI coding assistant (Claude / Cursor). **Product workflow is the same**; **NestJS / Laravel / Django** (and React Vite FE) are chosen in config and implemented via `stacks/` adapters.
 
-This repo is a **docs + config OS** for Claude/Cursor. It does **not** ship ready `apps/` code — apps are generated at bootstrap from the active stack adapter.
+This repo (`ai-mvp-template`) is a **docs + config OS**. It does **not** ship ready `apps/` code — apps are generated at bootstrap from the active stack adapter.
 
 ## Quick start
 
@@ -21,7 +21,7 @@ Then either:
 ## Folder structure and meaning
 
 ```text
-claude-mvp-template/
+ai-mvp-template/
 ├── CLAUDE.md / AGENTS.md     # AI entry: read order + hard rules
 ├── stack.config.yaml         # ★ Chosen stack, pins, features, deploy
 ├── stack.config.examples/    # Ready Nest / Laravel / Django + React configs
@@ -32,13 +32,13 @@ claude-mvp-template/
 ├── deploy/                   # Multi-platform deploy guide + kb
 ├── tutorial/                 # Day 0–4 + sample prompt packs
 ├── .cursor/rules/            # Cursor always-on contracts
-├── .claude/skills/           # Claude skills (bootstrap, deploy, …)
+├── .claude/skills/           # Agent skills (bootstrap, deploy, …)
 └── (apps/ — NOT in base; created by bootstrap)
 ```
 
 | Path | Meaning | You usually… |
 |---|---|---|
-| [`CLAUDE.md`](./CLAUDE.md) | First file for Claude: what to read, product contracts | Leave as-is; fill project name via config |
+| [`CLAUDE.md`](./CLAUDE.md) | First file for the AI agent: what to read, product contracts | Leave as-is; fill project name via config |
 | [`AGENTS.md`](./AGENTS.md) | Short mirror for Cursor/agents | Leave as-is |
 | [`stack.config.yaml`](./stack.config.yaml) | Source of truth: `backend.framework`, FE, package pins, feature flags, deploy targets | **Edit** every new app / stack switch |
 | [`stack.config.examples/`](./stack.config.examples/) | Copy-paste configs for Nest, Laravel, Django (+ React) | Copy → `stack.config.yaml` |
@@ -66,7 +66,7 @@ docs/features/*    →  prompts/generate-*   →  feature code
 deploy/PLATFORM-GUIDE + stacks/*/BOOTSTRAP runtime  →  staging deploy
 ```
 
-Switching Nest ↔ Laravel ↔ Django **does not** change the product workflow — only which adapter folder Claude loads. New languages/frameworks need a new `stacks/<name>/` + catalog entry.
+Switching Nest ↔ Laravel ↔ Django **does not** change the product workflow — only which adapter folder the agent loads. New languages/frameworks need a new `stacks/<name>/` + catalog entry.
 
 ## Intentionally missing
 

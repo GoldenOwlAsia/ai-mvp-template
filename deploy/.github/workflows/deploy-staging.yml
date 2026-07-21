@@ -1,4 +1,5 @@
-# Skeleton — wire Railway/Vercel tokens as GitHub Actions secrets before enabling
+# Skeleton — wire provider CLIs as GitHub Actions secrets before enabling
+# Providers come from stack.config.yaml (deploy.web / deploy.api) — do not hardcode Railway.
 name: deploy-staging
 
 on:
@@ -14,9 +15,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Stub — configure deploy
         run: |
-          echo "Wire Railway CLI / Vercel CLI here."
+          echo "Wire CLIs for providers in stack.config.yaml (e.g. Vercel + Render or Railway)."
           echo "Do not print secret values."
           echo "Require human approval for production (separate workflow)."
       # Example placeholders (do not enable until secrets exist):
-      # - run: railway up --service api
       # - run: vercel deploy --prebuilt --token=$VERCEL_TOKEN
+      # - run: # Render / Railway deploy per active deploy.api

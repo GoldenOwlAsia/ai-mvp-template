@@ -1,11 +1,17 @@
 {
-  "name": "taskflow",
+  "name": "ai-mvp-template",
   "private": true,
   "description": "Claude MVP base — docs + stack config. Apps generated via bootstrap + stack adapters.",
   "packageManager": "pnpm@9.12.0",
   "scripts": {
     "validate:stack": "node scripts/validate-stack-config.mjs",
-    "apply:stack": "node scripts/apply-stack-config.mjs"
+    "apply:stack": "node scripts/apply-stack-config.mjs",
+    "preflight:deploy": "node scripts/deploy-preflight.mjs",
+    "dev:web": "pnpm --filter @app/web dev",
+    "dev:api": "pnpm --filter @app/api start:dev",
+    "build:web": "pnpm --filter @app/web build",
+    "build:api": "pnpm --filter @app/api build",
+    "typecheck:web": "pnpm --filter @app/web typecheck"
   },
   "engines": {
     "node": ">=20"
@@ -14,5 +20,14 @@
     "yaml": "2.5.1",
     "prettier": "3.3.3",
     "typescript": "5.6.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@prisma/client",
+      "@prisma/engines",
+      "bcrypt",
+      "prisma"
+    ]
   }
 }
